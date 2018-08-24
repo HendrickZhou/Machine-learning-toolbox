@@ -1,0 +1,1 @@
+% calculate the Least Square Error
