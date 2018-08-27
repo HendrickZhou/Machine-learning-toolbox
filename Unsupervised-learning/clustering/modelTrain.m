@@ -1,10 +1,10 @@
-function C_set = modelTrain(D, n)
+function [C_set, label] = modelTrain(D, n)
 % this function receive the data, do the clustring, and return the
 % clustring result as a cell array
 % @Input1: D is the matrix that contains all the samples as row vec
 % @Input2: n is the num of cluster client needs
-% @Outputs: C_set is the cell array of clustering result. Each cell is the
-% matrix t
+% @Outputs: C_set is the cell array of clustering result. Each cell is a
+% matrix
 
 % Select the init MU
 % MU = {mu_1; mu_2; ... mu_k; ...mu_n}
@@ -20,6 +20,7 @@ end
 iterations = 0;
 while 1
     C_set = cell(1, n);
+    label = zeros(len, 1);
     %% cluster the data based on updated MU
     % D = {x_1; x_2; ... x_i; ...x_len}
     for i = 1 : len
@@ -38,6 +39,8 @@ while 1
         c = C_set{minIndex};
         c = [c;x_i];
         C_set{minIndex} = c;
+        
+        label(i) = minIndex;
     end
     
     %% update the new MU
@@ -48,9 +51,9 @@ while 1
     end
       
     %% judge the clustering result
-    threshold = 0.02;
+    threshold = 0.0000;
     maxIterations = 100000;
-    delta = MU - lastMU;
+    delta = abs(MU - lastMU);
     if sum(sum(delta > threshold)) == 0
         break
     end

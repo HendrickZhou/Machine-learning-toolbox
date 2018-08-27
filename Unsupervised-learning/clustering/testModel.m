@@ -15,16 +15,32 @@ usr5 = [14.6, 14.3, 14.2, 14.6, 16.5, 18.93, 20.64, 21.99, 19.65, 17.03, 16.32, 
 [usrData4, usrLabel4] = data_generator(1000, usr4, 4, 5);
 [usrData5, usrLabel5] = data_generator(1000, usr5, 5, 5);
 
-%mix the data
-mix =[];
-mix = [mix; usrData1];
-mix = [mix; usrData2];
-mix = [mix; usrData3];
-mix = [mix; usrData4];
-mix = [mix; usrData5];
-
+% mix the data
+mix =[usrData1; usrData2; usrData3; usrData4; usrData5];
 rowrank = randperm(length(mix));
 mix = mix(rowrank,:);
 
+% get the reference label
+usrLabel = [usrLabel1; usrLabel2; usrLabel3; usrLabel4; usrLabel5];
 
-clusters = modelTrain(mix, 5)
+% train the model
+[clusters, label] = modelTrain(mix, 5);
+
+figure
+plot((clusters{1})')
+figure
+plot((clusters{2})')
+figure
+plot((clusters{3})')
+figure
+plot((clusters{4})')
+figure
+plot((clusters{5})')
+
+% evaluate the model
+score1 = exIndex(usrLabel, label, 1)
+score2 = exIndex(usrLabel, label, 2)
+score3 = exIndex(usrLabel, label, 3)
+
+score4 = intIndex(clusters, 1)
+score5 = intIndex(clusters, 2)

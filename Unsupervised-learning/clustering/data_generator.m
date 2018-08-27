@@ -16,5 +16,4 @@ for i = 1:axis
     new = delta+ref;
     usrData = [usrData, new];
 end
-usrLabel = zeros(nums, maxType);
-usrLabel(:, type) = 1;    
+usrLabel = ones(nums, 1) * type;
