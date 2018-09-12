@@ -15,15 +15,22 @@ usr5 = [14.6, 14.3, 14.2, 14.6, 16.5, 18.93, 20.64, 21.99, 19.65, 17.03, 16.32, 
 [usrData4, usrLabel4] = data_generator(1000, usr4, 4, 5);
 [usrData5, usrLabel5] = data_generator(1000, usr5, 5, 5);
 
-% figure
+figure
 plot((usrData1)')
 hold on
-% figure
+
+figure
 plot((usrData2)')
 hold on
+
+figure
 plot((usrData3)')
 hold on
+
+figure
 plot((usrData4)')
 hold on
+
+figure
 plot((usrData5)')
 hold on
